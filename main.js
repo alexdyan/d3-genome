@@ -46,7 +46,7 @@ const graph = {
 
 const simulation = d3.forceSimulation()
     .force("link", d3.forceLink()
-        // specify how to find the node sources bc they default to index (we want them by name)
+        // specifies to find the node sources by name (default is by index)
         .id(function(d) { return d.name }))
     .force("charge", d3.forceManyBody().strength(-100))
     .force("center", d3.forceCenter(width / 2, height / 2))
@@ -65,7 +65,6 @@ const node = svg
     .attr("class", "node")
     .data(graph.nodes)
 
-
 simulation.nodes(graph.nodes);
 simulation.force("link").links(graph.links);
 
@@ -75,6 +74,7 @@ let strand = svg
     .attr("fill", "none")
     .attr("stroke-width", 3)
     .attr("stroke", "red")
+
 
 function update() {
     link.attr("x1", function(l) { return l.source.x })
@@ -94,6 +94,18 @@ function update() {
     curve.lineEnd();
     svg.selectAll(".strand").attr("d", path);
 
+    findPoint(strand.node(), 50)
+}
+
+// find a point at a certain percentage
+const circle = svg.append("circle")
+    .attr("r", 5)
+
+function findPoint(path, percentage) {
+    const pathLength = path.getTotalLength();
+    const point = path.getPointAtLength((percentage/100) * pathLength);
+    circle.attr("cx", point.x - 2.5)
+          .attr("cy", point.y - 2.5)
 }
 
 
