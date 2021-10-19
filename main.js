@@ -75,7 +75,6 @@ let strand = svg
     .attr("stroke-width", 3)
     .attr("stroke", "red")
 
-
 function update() {
     link.attr("x1", function(l) { return l.source.x })
     .attr("y1", function(l) { return l.source.y })
@@ -93,21 +92,15 @@ function update() {
     }
     curve.lineEnd();
     svg.selectAll(".strand").attr("d", path);
-
-    findPoint(strand.node(), 50)
 }
 
 // find a point at a certain percentage
-const circle = svg.append("circle")
-    .attr("r", 5)
-
-function findPoint(path, percentage) {
-    const pathLength = path.getTotalLength();
-    const point = path.getPointAtLength((percentage/100) * pathLength);
-    circle.attr("cx", point.x - 2.5)
-          .attr("cy", point.y - 2.5)
-}
-
+const calculate = document.querySelector("button");
+calculate.addEventListener("click", () => {
+    let percent1 = document.querySelector("#percent1").value;
+    let percent2 = document.querySelector("#percent2").value;
+    findRegion(strand.node(), percent1, percent2);
+})
 
 
 // no way to set the strength of individual links, the strength is based on the distance

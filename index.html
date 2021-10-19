@@ -2,14 +2,33 @@
 <html>
     <head>
         <title>genome visualization</title>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+            input {
+                width: 150px;
+            }
+            button {
+                width: 150px;
+            }
+        </style>
     </head>
     <body>
-        <h1>force directed graph tutorial</h1>
-        <!-- <canvas id="network" width="500" height="500"></canvas> -->
-        <svg id="svg1"></svg>
+        <div class="container">
+            <div>
+                <input id="percent1" placeholder="Enter a percentage">
+                <input id="percent2" placeholder="Enter another">
+                <button type="submit">Calculate</button>
+            </div>
+            <p id="demo"></p>
+            <svg id="svg1"></svg>
+        </div>
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="point.js"></script>
         <script src="main.js"></script>
+        <script src="regions.js"></script>
     </body>
 </html>
