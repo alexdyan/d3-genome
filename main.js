@@ -94,14 +94,6 @@ function update() {
     svg.selectAll(".strand").attr("d", path);
 }
 
-// find a point at a certain percentage
-const calculate = document.querySelector("button");
-calculate.addEventListener("click", () => {
-    let percent1 = document.querySelector("#percent1").value;
-    let percent2 = document.querySelector("#percent2").value;
-    findRegion(strand.node(), percent1, percent2);
-})
-
 
 // no way to set the strength of individual links, the strength is based on the distance
 // between links and nodes and nodes... bigger set distance = smaller strength
